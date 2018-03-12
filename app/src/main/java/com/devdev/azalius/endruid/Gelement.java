@@ -8,7 +8,6 @@ import java.io.File;
  * Created by Azalius on 12-Mar-18.
  */
 
-public abstract class Gelement {
-
+public interface Gelement {
     public abstract View toDisplay();
 }

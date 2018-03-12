@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.context = getApplicationContext();
 
         evr = new Environnement(context);
-        fe = new FileExplorer(evr,(LinearLayout)findViewById(R.id.listeFic));
+        fe = new FileExplorer(evr,(LinearLayout)findViewById(R.id.listeFic), context);
 
         ImageButton retour = (ImageButton) findViewById(R.id.retour);
         retour.setOnClickListener(new View.OnClickListener() {

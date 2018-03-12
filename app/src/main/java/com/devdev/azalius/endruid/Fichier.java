@@ -1,6 +1,8 @@
 package com.devdev.azalius.endruid;
 
+import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
 
 import java.io.File;
 
@@ -8,13 +10,19 @@ import java.io.File;
  * Created by Azalius on 12-Mar-18.
  */
 
-public class Fichier extends Gelement {
-    public Fichier(File fic) {
-        super();
+public class Fichier implements Gelement {
+    private File fic;
+    private Context ct;
+
+    public Fichier(File fic, Context ct) {
+        this.fic = fic;
+        this.ct = ct;
     }
 
     @Override
     public View toDisplay() {
-        return null;
+        TextView tv = new TextView(this.ct);
+        tv.setText(this.fic.getName());
+        return tv;
     }
 }

@@ -1,6 +1,7 @@
 package com.devdev.azalius.endruid;
 
 
+import android.content.Context;
 import android.text.Layout;
 import android.widget.LinearLayout;
 
@@ -23,6 +24,7 @@ public class FileExplorer {
     private String copyPath;
     private ArrayList<Gelement> aAfficher;
     private Environnement envi;
+    private Context ct;
 
     public static void copy(File src, File dst) throws IOException {
         InputStream in = new FileInputStream(src);
@@ -43,12 +45,13 @@ public class FileExplorer {
         }
     }
 
-    public FileExplorer(Environnement evr, LinearLayout aFill){
+    public FileExplorer(Environnement evr, LinearLayout aFill, Context ct){
         this.envi = evr;
         this.path = this.envi.getStartPath();
         this.copyPath = null;
         this.aAfficher = new ArrayList<>();
         this.aFill = aFill;
+        this.ct = ct;
 
         this.refresh();
     }
@@ -81,12 +84,17 @@ public class FileExplorer {
 
     private void refresh(){
         File enCours = new File (path);
-        for (File fic : enCours.listFiles()){
-            if (fic.isDirectory()){
-                this.aAfficher.add(new Dossier(fic));
-            }
-            if (fic.isFile()){
-                this.aAfficher.add(new Fichier(fic));
+        if (enCours == null || enCours.listFiles() == null){
+            this.aAfficher.add(new ErrorsDisplay(ct, "Dossier vide"));
+        }
+        else{
+            for (File fic : enCours.listFiles()){
+                if (fic.isDirectory()){
+                    this.aAfficher.add(new Dossier(fic, this.ct));
+                }
+                if (fic.isFile()){
+                    this.aAfficher.add(new Fichier(fic, this.ct));
+                }
             }
         }
         fillArea();
