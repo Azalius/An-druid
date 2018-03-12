@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Endruid</string>
     <string name="paste">Coller ici</string>
+    <string name="wrongPath">Chemin invalide</string>
+    <string name="emptyFolder">Dossier vide</string>
+    <string name="notAFolder">Il s\'agit d\'un fichier</string>
 </resources>

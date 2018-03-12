@@ -2,6 +2,7 @@ package com.devdev.azalius.endruid;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.File;
@@ -21,8 +22,21 @@ public class Dossier implements Gelement {
 
     @Override
     public View toDisplay() {
+        LinearLayout aRet = new LinearLayout(ct);
+
         TextView tv = new TextView(this.ct);
         tv.setText(this.fic.getName());
-        return tv;
+        aRet.addView(tv);
+
+        aRet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                setFatherFile(fic.getAbsolutePath());
+            }});
+
+        return aRet;
+    }
+    public void setFatherFile(String path){
+
     }
 }

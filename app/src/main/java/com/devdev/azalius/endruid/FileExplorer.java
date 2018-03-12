@@ -90,18 +90,19 @@ public class FileExplorer {
     private void refresh(){
         File enCours = new File (path);
         champ.setText(path);
+        this.aAfficher.clear();
 
         if (enCours == null){
-            this.aAfficher.add(new ErrorsDisplay(ct, "Chemin invalide : " + path));
+            this.aAfficher.add(new ErrorsDisplay(ct, ct.getString(R.string.wrongPath) + "  : " + path));
         }
         else if (enCours.listFiles() == null){
-            this.aAfficher.add(new ErrorsDisplay(ct, "Dossier vide : "+ path));
+            this.aAfficher.add(new ErrorsDisplay(ct, ct.getString(R.string.emptyFolder )+ " : "+ path));
         }
         else if (!enCours.exists()){
-            this.aAfficher.add(new ErrorsDisplay(ct, "Dossier Inexistant : "+ path));
+            this.aAfficher.add(new ErrorsDisplay(ct, ct.getString(R.string.wrongPath )+ " : "+ path));
         }
         else if (!enCours.isDirectory()){
-            this.aAfficher.add(new ErrorsDisplay(ct, "Fichier pas dossier : "+ path));
+            this.aAfficher.add(new ErrorsDisplay(ct, ct.getString(R.string.notAFolder )+ " : "+ path));
         }
         else{
             for (File fic : enCours.listFiles()){
