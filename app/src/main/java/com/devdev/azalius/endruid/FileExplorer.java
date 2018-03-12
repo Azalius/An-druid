@@ -3,7 +3,10 @@ package com.devdev.azalius.endruid;
 
 import android.content.Context;
 import android.text.Layout;
+import android.util.Log;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 
 public class FileExplorer {
     private final LinearLayout aFill;
+    private final EditText champ;
     private String path;
     private String copyPath;
     private ArrayList<Gelement> aAfficher;
@@ -45,9 +49,10 @@ public class FileExplorer {
         }
     }
 
-    public FileExplorer(Environnement evr, LinearLayout aFill, Context ct){
+    public FileExplorer(Environnement evr, LinearLayout aFill, Context ct, EditText et){
         this.envi = evr;
-        this.path = this.envi.getStartPath();
+        this.champ = et;
+        this.path = ct.getFilesDir().getAbsolutePath();
         this.copyPath = null;
         this.aAfficher = new ArrayList<>();
         this.aFill = aFill;
@@ -84,8 +89,19 @@ public class FileExplorer {
 
     private void refresh(){
         File enCours = new File (path);
-        if (enCours == null || enCours.listFiles() == null){
-            this.aAfficher.add(new ErrorsDisplay(ct, "Dossier vide"));
+        champ.setText(path);
+
+        if (enCours == null){
+            this.aAfficher.add(new ErrorsDisplay(ct, "Chemin invalide : " + path));
+        }
+        else if (enCours.listFiles() == null){
+            this.aAfficher.add(new ErrorsDisplay(ct, "Dossier vide : "+ path));
+        }
+        else if (!enCours.exists()){
+            this.aAfficher.add(new ErrorsDisplay(ct, "Dossier Inexistant : "+ path));
+        }
+        else if (!enCours.isDirectory()){
+            this.aAfficher.add(new ErrorsDisplay(ct, "Fichier pas dossier : "+ path));
         }
         else{
             for (File fic : enCours.listFiles()){
@@ -102,6 +118,7 @@ public class FileExplorer {
 
     private void fillArea() {
         aFill.removeAllViews();
+        aFill.removeAllViewsInLayout();
         for (Gelement ge : this.aAfficher){
             this.aFill.addView(ge.toDisplay());
         }

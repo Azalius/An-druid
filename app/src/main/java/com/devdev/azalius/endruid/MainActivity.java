@@ -5,6 +5,7 @@ package com.devdev.azalius.endruid;
         import android.os.Bundle;
         import android.view.View;
         import android.widget.Button;
+        import android.widget.EditText;
         import android.widget.ImageButton;
         import android.widget.LinearLayout;
 
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.context = getApplicationContext();
 
         evr = new Environnement(context);
-        fe = new FileExplorer(evr,(LinearLayout)findViewById(R.id.listeFic), context);
+        fe = new FileExplorer(evr,(LinearLayout)findViewById(R.id.listeFic), context, (EditText)findViewById(R.id.fname));
 
         ImageButton retour = (ImageButton) findViewById(R.id.retour);
         retour.setOnClickListener(new View.OnClickListener() {

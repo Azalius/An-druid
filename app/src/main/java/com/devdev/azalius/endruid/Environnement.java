@@ -3,6 +3,9 @@ package com.devdev.azalius.endruid;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
+
+import java.io.File;
 
 
 /**
@@ -17,7 +20,7 @@ public class Environnement {
     public Environnement(Context cont){
         this.primary = ContextCompat.getColor(cont, R.color.colorPrimary);
         this.primary = ContextCompat.getColor(cont, R.color.colorAccent);
-        this.startPath = "/";
+        this.startPath = File.listRoots()[0].getAbsolutePath();
     }
 
     public int getPrimary() {
