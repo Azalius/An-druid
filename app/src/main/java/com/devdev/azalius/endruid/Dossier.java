@@ -12,12 +12,14 @@ import java.io.File;
  */
 
 public class Dossier implements Gelement {
+    private final FileExplorer fp;
     private File fic;
     private Context ct;
 
-    public Dossier(File fic, Context ct) {
+    public Dossier(File fic, Context ct, FileExplorer fp) {
         this.fic = fic;
         this.ct = ct;
+        this.fp = fp;
     }
 
     @Override
@@ -28,15 +30,7 @@ public class Dossier implements Gelement {
         tv.setText(this.fic.getName());
         aRet.addView(tv);
 
-        aRet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                setFatherFile(fic.getAbsolutePath());
-            }});
-
         return aRet;
     }
-    public void setFatherFile(String path){
 
-    }
 }
