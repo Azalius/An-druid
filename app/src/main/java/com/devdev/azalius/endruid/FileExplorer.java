@@ -100,10 +100,10 @@ public class FileExplorer {
         else{
             for (File fic : enCours.listFiles()){
                 if (fic.isDirectory()){
-                    this.aAfficher.add(new Dossier(fic, this.ct));
+                    this.aAfficher.add(new Dossier(fic, this.ct, this.pm));
                 }
                 if (fic.isFile()){
-                    this.aAfficher.add(new Fichier(fic, this.ct));
+                    this.aAfficher.add(new Fichier(fic, this.ct, this.pm));
                 }
             }
         }

@@ -12,11 +12,11 @@ import java.io.File;
  */
 
 public class Dossier implements Gelement {
-    private final FileExplorer fp;
+    private final PathManager fp;
     private File fic;
     private Context ct;
 
-    public Dossier(File fic, Context ct, FileExplorer fp) {
+    public Dossier(File fic, Context ct, PathManager fp) {
         this.fic = fic;
         this.ct = ct;
         this.fp = fp;
