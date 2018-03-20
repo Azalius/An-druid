@@ -10,11 +10,10 @@ import java.io.File;
  */
 
 public class PathManager {
-    private final FileExplorer fe;
+    private FileExplorer fe;
     String path;
     EditText et;
-    public PathManager(String path, final EditText et, FileExplorer fe){
-        this.fe = fe;
+    public PathManager(String path, final EditText et){
         this.path = path;
         this.et = et;
         this.et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -25,7 +24,6 @@ public class PathManager {
                 }
             }
         });
-        this.setPath(this.path);
     }
     public void setPath(String path){
         this.path = path;
@@ -35,5 +33,10 @@ public class PathManager {
 
     public void retour() {
         this.setPath(new File(path).getParentFile().getAbsolutePath());
+    }
+
+    public void start(FileExplorer fe) {
+        this.fe = fe;
+        this.setPath(this.path);
     }
 }
