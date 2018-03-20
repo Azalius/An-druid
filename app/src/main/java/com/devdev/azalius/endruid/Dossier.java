@@ -2,6 +2,7 @@ package com.devdev.azalius.endruid;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,11 +25,23 @@ public class Dossier implements Gelement {
 
     @Override
     public View toDisplay() {
-        LinearLayout aRet = new LinearLayout(ct);
+        LinearLayout aRet = new LinearLayout(this.ct);
 
         TextView tv = new TextView(this.ct);
         tv.setText(this.fic.getName());
+        tv.setTextSize(26);
+
+
+        ImageView iv = new ImageView(this.ct);
+        iv.setImageResource(R.mipmap.folder);
+        iv.setAdjustViewBounds(true);
+        iv.setMaxHeight(100);
+        iv.setMaxWidth(100);
+
+        aRet.addView(iv);
         aRet.addView(tv);
+
+        aRet.setMinimumHeight(200);
 
         return aRet;
     }

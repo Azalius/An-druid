@@ -2,6 +2,9 @@ package com.devdev.azalius.endruid;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.File;
@@ -23,9 +26,25 @@ public class Fichier implements Gelement {
 
     @Override
     public View toDisplay() {
+        LinearLayout ll = new LinearLayout(this.ct);
+
         TextView tv = new TextView(this.ct);
         tv.setText(this.fic.getName());
-        return tv;
+        tv.setTextSize(26);
+
+
+        ImageView iv = new ImageView(this.ct);
+        iv.setImageResource(R.mipmap.file);
+        iv.setAdjustViewBounds(true);
+        iv.setMaxHeight(100);
+        iv.setMaxWidth(100);
+
+        ll.addView(iv);
+        ll.addView(tv);
+
+        ll.setMinimumHeight(200);
+
+        return ll;
     }
 
 }
