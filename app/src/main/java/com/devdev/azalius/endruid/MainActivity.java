@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private static Context context;
     Environnement evr;
     FileExplorer fe;
+    PathManager pm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +24,15 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.context = getApplicationContext();
 
         evr = new Environnement(context);
-        fe = new FileExplorer(evr,(LinearLayout)findViewById(R.id.listeFic), context, (EditText)findViewById(R.id.fname));
+        pm = new PathManager(evr.getStartPath(), (EditText)findViewById(R.id.fname), fe);
+        fe = new FileExplorer(evr,(LinearLayout)findViewById(R.id.listeFic),pm, context);
+
 
         ImageButton retour = (ImageButton) findViewById(R.id.retour);
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fe.retour();
+                pm.retour();
             }
         });
     }

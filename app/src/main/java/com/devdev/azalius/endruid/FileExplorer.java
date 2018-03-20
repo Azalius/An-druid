@@ -4,6 +4,7 @@ package com.devdev.azalius.endruid;
 import android.content.Context;
 import android.text.Layout;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,12 +24,12 @@ import java.util.ArrayList;
 
 public class FileExplorer {
     private final LinearLayout aFill;
-    private final EditText champ;
     private String path;
     private String copyPath;
     private ArrayList<Gelement> aAfficher;
     private Environnement envi;
     private Context ct;
+    private PathManager pm;
 
     public static void copy(File src, File dst) throws IOException {
         InputStream in = new FileInputStream(src);
@@ -49,9 +50,9 @@ public class FileExplorer {
         }
     }
 
-    public FileExplorer(Environnement evr, LinearLayout aFill, Context ct, EditText et){
+    public FileExplorer(Environnement evr, LinearLayout aFill,PathManager pm, Context ct){
         this.envi = evr;
-        this.champ = et;
+        this.pm = pm;
         this.path = ct.getFilesDir().getAbsolutePath();
         this.copyPath = null;
         this.aAfficher = new ArrayList<>();
@@ -63,14 +64,7 @@ public class FileExplorer {
 
     public void setPath(String path){
         this.path = path;
-    }
-
-    public void retour(){
-        if (!"/".equals(path)){
-            File fic = new File(path);
-            path = fic.getParent();
-            refresh();
-        }
+        this.refresh();
     }
 
     public void coller(){
@@ -89,7 +83,6 @@ public class FileExplorer {
 
     private void refresh(){
         File enCours = new File (path);
-        champ.setText(path);
         this.aAfficher.clear();
 
         if (enCours == null){
@@ -120,8 +113,12 @@ public class FileExplorer {
     private void fillArea() {
         aFill.removeAllViews();
         aFill.removeAllViewsInLayout();
-        for (Gelement ge : this.aAfficher){
+        for (final Gelement ge : this.aAfficher){
             this.aFill.addView(ge.toDisplay());
         }
+    }
+
+    private void clickPath(String path) { // sur click d'un element, le faire remonter au pathManager
+        this.pm.setPath(path);
     }
 }

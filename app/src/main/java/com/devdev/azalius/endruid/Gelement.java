@@ -10,4 +10,5 @@ import java.io.File;
 
 public interface Gelement {
     public abstract View toDisplay();
+    public abstract String getPath();
 }
