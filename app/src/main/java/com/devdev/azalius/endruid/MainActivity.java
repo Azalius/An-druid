@@ -1,6 +1,7 @@
 package com.devdev.azalius.endruid;
 
         import android.content.Context;
+        import android.content.Intent;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.view.View;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         MainActivity.context = getApplicationContext();
 
-        evr = new Environnement(context);
+        evr = new Environnement(context, this);
         pm = new PathManager(evr.getStartPath(), (EditText)findViewById(R.id.fname));
         fe = new FileExplorer(evr,(LinearLayout)findViewById(R.id.listeFic),pm, context);
         pm.start(fe);
@@ -34,6 +35,17 @@ public class MainActivity extends AppCompatActivity {
                 pm.retour();
             }
         });
+
+        ImageButton param = (ImageButton) findViewById(R.id.param);
+        param.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(MainActivity.this, Param.class);
+                MainActivity.this.startActivity(myIntent);
+                evr.setUp();
+            }
+        });
+        evr.setUp();
     }
 }
 

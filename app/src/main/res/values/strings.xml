@@ -4,4 +4,8 @@
     <string name="wrongPath">Chemin invalide</string>
     <string name="emptyFolder">Dossier vide</string>
     <string name="notAFolder">Il s\'agit d\'un fichier</string>
+    <string name="valider">Valider</string>
+    <string name="chgpath">Modifier le chemin de départ :</string>
+    <string name="saveName">save</string>
+    <string name="unSaved">empty_af_fam</string>
 </resources>

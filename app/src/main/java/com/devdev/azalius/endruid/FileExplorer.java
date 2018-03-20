@@ -53,7 +53,7 @@ public class FileExplorer {
     public FileExplorer(Environnement evr, LinearLayout aFill,PathManager pm, Context ct){
         this.envi = evr;
         this.pm = pm;
-        this.path = ct.getFilesDir().getAbsolutePath();
+        this.path = evr.getStartPath();
         this.copyPath = null;
         this.aAfficher = new ArrayList<>();
         this.aFill = aFill;
