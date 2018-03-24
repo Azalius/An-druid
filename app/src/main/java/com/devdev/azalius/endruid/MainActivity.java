@@ -5,6 +5,7 @@ package com.devdev.azalius.endruid;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.view.View;
+        import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageButton;
         import android.widget.LinearLayout;
@@ -46,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         evr.setUp();
+
+        Button coller = (Button)(findViewById(R.id.coller));
+        coller.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fe.coller();
+            }
+        });
     }
 }
 

@@ -18,7 +18,7 @@ public class Fichier implements Gelement {
     private File fic;
     private Context ct;
 
-    public Fichier(File fic, Context ct, PathManager fp) {
+    public Fichier(File fic, Context ct, PathManager fp, FileExplorer fileExplorer) {
         this.fp = fp;
         this.fic = fic;
         this.ct = ct;

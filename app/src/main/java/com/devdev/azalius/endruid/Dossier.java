@@ -17,7 +17,7 @@ public class Dossier implements Gelement {
     private File fic;
     private Context ct;
 
-    public Dossier(File fic, Context ct, PathManager fp) {
+    public Dossier(File fic, Context ct, PathManager fp, FileExplorer fileExplorer) {
         this.fic = fic;
         this.ct = ct;
         this.fp = fp;

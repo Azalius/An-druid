@@ -67,6 +67,10 @@ public class FileExplorer {
         this.refresh();
     }
 
+    public void setCopy(String patth){
+        this.copyPath = patth;
+    }
+
     public void coller(){
         if (copyPath != null){
             File src = new File(copyPath);
@@ -88,22 +92,22 @@ public class FileExplorer {
         if (enCours == null){
             this.aAfficher.add(new ErrorsDisplay(ct, ct.getString(R.string.wrongPath) + "  : " + path));
         }
-        else if (enCours.listFiles() == null){
-            this.aAfficher.add(new ErrorsDisplay(ct, ct.getString(R.string.emptyFolder )+ " : "+ path));
-        }
         else if (!enCours.exists()){
             this.aAfficher.add(new ErrorsDisplay(ct, ct.getString(R.string.wrongPath )+ " : "+ path));
         }
         else if (!enCours.isDirectory()){
             this.aAfficher.add(new ErrorsDisplay(ct, ct.getString(R.string.notAFolder )+ " : "+ path));
         }
+        else if (enCours.listFiles() == null){
+            this.aAfficher.add(new ErrorsDisplay(ct, ct.getString(R.string.emptyFolder )+ " : "+ path));
+        }
         else{
             for (File fic : enCours.listFiles()){
                 if (fic.isDirectory()){
-                    this.aAfficher.add(new Dossier(fic, this.ct, this.pm));
+                    this.aAfficher.add(new Dossier(fic, this.ct, this.pm, this));
                 }
                 if (fic.isFile()){
-                    this.aAfficher.add(new Fichier(fic, this.ct, this.pm));
+                    this.aAfficher.add(new Fichier(fic, this.ct, this.pm, this));
                 }
             }
         }
