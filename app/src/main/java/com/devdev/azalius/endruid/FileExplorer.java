@@ -5,6 +5,7 @@ import android.content.Context;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class FileExplorer {
     private Environnement envi;
     private Context ct;
     private PathManager pm;
+    private Button btnColler;
 
     public static void copy(File src, File dst) throws IOException {
         InputStream in = new FileInputStream(src);
@@ -50,7 +52,7 @@ public class FileExplorer {
         }
     }
 
-    public FileExplorer(Environnement evr, LinearLayout aFill,PathManager pm, Context ct){
+    public FileExplorer(Environnement evr, LinearLayout aFill, PathManager pm, Context ct, Button coller){
         this.envi = evr;
         this.pm = pm;
         this.path = evr.getStartPath();
@@ -58,6 +60,7 @@ public class FileExplorer {
         this.aAfficher = new ArrayList<>();
         this.aFill = aFill;
         this.ct = ct;
+        this.btnColler = coller;
 
         this.refresh();
     }
@@ -69,6 +72,7 @@ public class FileExplorer {
 
     public void setCopy(String patth){
         this.copyPath = patth;
+        this.refresh();
     }
 
     public void coller(){
@@ -77,9 +81,9 @@ public class FileExplorer {
             File dest = new File(path);
             try{
                 copy(src, dest);
+                copyPath = null;
             }
             catch (Exception e){
-                //TODO
             }
             refresh();
         }
@@ -112,6 +116,12 @@ public class FileExplorer {
             }
         }
         fillArea();
+        if (this.copyPath == null){
+            btnColler.setVisibility(View.INVISIBLE);
+        }
+        else{
+            btnColler.setVisibility(View.VISIBLE);
+        }
     }
 
     private void fillArea() {

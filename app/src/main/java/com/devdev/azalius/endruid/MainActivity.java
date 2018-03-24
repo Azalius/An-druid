@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         evr = new Environnement(context, this);
         pm = new PathManager(evr.getStartPath(), (EditText)findViewById(R.id.fname));
-        fe = new FileExplorer(evr,(LinearLayout)findViewById(R.id.listeFic),pm, context);
+        fe = new FileExplorer(evr,(LinearLayout)findViewById(R.id.listeFic),pm, context, (Button)findViewById(R.id.coller));
         pm.start(fe);
 
         ImageButton retour = (ImageButton) findViewById(R.id.retour);

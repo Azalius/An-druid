@@ -25,6 +25,16 @@ public class Dossier implements Gelement {
 
     @Override
     public View toDisplay() {
+        /*
+        exemple
+        btnCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               fp.setPath(fic.getAbsolutePath());
+            }
+        });
+        */
+
         LinearLayout aRet = new LinearLayout(this.ct);
 
         TextView tv = new TextView(this.ct);

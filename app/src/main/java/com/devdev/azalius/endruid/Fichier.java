@@ -39,6 +39,7 @@ public class Fichier implements Gelement {
         });
         */
 
+
         LinearLayout ll = new LinearLayout(this.ct);
 
         TextView tv = new TextView(this.ct);
