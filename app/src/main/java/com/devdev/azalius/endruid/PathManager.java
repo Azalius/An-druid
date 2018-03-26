@@ -33,15 +33,13 @@ public class PathManager {
                     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                         if (actionId == EditorInfo.IME_ACTION_SEARCH ||
                                 actionId == EditorInfo.IME_ACTION_DONE ||
-                                event != null &&
-                                        event.getAction() == KeyEvent.ACTION_DOWN &&
-                                        event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                                event != null && event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                             if (event == null || !event.isShiftPressed()) {
                                 setPath(et.getText().toString());
-                                return true; // consume.
+                                return true;
                             }
                         }
-                        return false; // pass on to other listeners.
+                        return false;
                     }
                 }
         );
@@ -53,7 +51,14 @@ public class PathManager {
     }
 
     public void retour() {
+        if (canReturn(new File(path))){
+            return;
+        }
         this.setPath(new File(path).getParentFile().getAbsolutePath());
+    }
+
+    private boolean canReturn(File fic) {
+        return fic == null || !fic.exists() ||fic.getParentFile() == null || !fic.getParentFile().exists();
     }
 
     public void start(FileExplorer fe) {

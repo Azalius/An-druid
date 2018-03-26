@@ -117,10 +117,10 @@ public class FileExplorer {
         }
         fillArea();
         if (this.copyPath == null){
-            btnColler.setVisibility(View.INVISIBLE);
+            btnColler.setEnabled(false);
         }
         else{
-            btnColler.setVisibility(View.VISIBLE);
+            btnColler.setEnabled(true);
         }
     }
 

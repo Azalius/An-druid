@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
 /**
  * Created by Azalius on 20-Mar-18.
@@ -34,6 +34,7 @@ public class Param extends AppCompatActivity {
 
     public String getPath(){
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        Log.e("je lis", sharedPref.getString(getString(R.string.saveName), getString(R.string.unSaved)));
         return sharedPref.getString(getString(R.string.saveName), getString(R.string.unSaved));
     }
 
