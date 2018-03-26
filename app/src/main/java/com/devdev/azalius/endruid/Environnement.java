@@ -23,7 +23,7 @@ public class Environnement {
     }
 
     public String getStartPath() {
-        SharedPreferences sharedPref = this.act.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.act.getSharedPreferences(this.act.getString(R.string.pref_name), Context.MODE_PRIVATE);
         String path = sharedPref.getString(this.act.getString(R.string.saveName), this.act.getString(R.string.unSaved));
         if (this.act.getString(R.string.unSaved).equals(path)){
             return File.listRoots()[0].getAbsolutePath();

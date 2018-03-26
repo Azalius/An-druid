@@ -33,15 +33,17 @@ public class Param extends AppCompatActivity {
     }
 
     public String getPath(){
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        Log.e("je lis", sharedPref.getString(getString(R.string.saveName), getString(R.string.unSaved)));
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.pref_name), Context.MODE_PRIVATE);
         return sharedPref.getString(getString(R.string.saveName), getString(R.string.unSaved));
     }
 
     private void saveData() {
         EditText et = findViewById(R.id.path);
         String path = et.getText().toString();
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        setStartPath(path);
+    }
+    private void setStartPath(String path){
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.pref_name), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.saveName), path);
         editor.commit();

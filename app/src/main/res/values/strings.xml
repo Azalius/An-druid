@@ -7,5 +7,6 @@
     <string name="valider">Valider</string>
     <string name="chgpath">Modifier le chemin de départ :</string>
     <string name="saveName">save</string>
-    <string name="unSaved">empty_af_fam</string>
+    <string name="unSaved">Aucun chemin defini</string>
+    <string name="pref_name">pref_name</string>
 </resources>
