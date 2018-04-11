@@ -41,6 +41,13 @@ public class Fichier implements Gelement {
 
 
         LinearLayout ll = new LinearLayout(this.ct);
+        ll.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                fe.setCopy(fic.getAbsolutePath());
+                return true;
+            }
+        });
 
         TextView tv = new TextView(this.ct);
         tv.setText(this.fic.getName());

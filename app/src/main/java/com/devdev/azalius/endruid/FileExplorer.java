@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -71,6 +72,8 @@ public class FileExplorer {
     }
 
     public void setCopy(String patth){
+        Toast.makeText(this.ct, R.string.copy,
+                Toast.LENGTH_LONG).show();
         this.copyPath = patth;
         this.refresh();
     }
@@ -82,10 +85,17 @@ public class FileExplorer {
             try{
                 copy(src, dest);
                 copyPath = null;
+                Toast.makeText(this.ct, R.string.okpaste,
+                        Toast.LENGTH_LONG).show();
             }
             catch (Exception e){
+                Toast.makeText(this.ct, R.string.pbpaste,
+                        Toast.LENGTH_LONG).show();
             }
-            refresh();
+            finally {
+                refresh();
+            }
+
         }
     }
 

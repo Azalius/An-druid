@@ -16,11 +16,13 @@ public class Dossier implements Gelement {
     private final PathManager fp;
     private File fic;
     private Context ct;
+    private FileExplorer fe;
 
     public Dossier(File fic, Context ct, PathManager fp, FileExplorer fileExplorer) {
         this.fic = fic;
         this.ct = ct;
         this.fp = fp;
+        this.fe = fileExplorer;
     }
 
     @Override
@@ -36,6 +38,19 @@ public class Dossier implements Gelement {
         */
 
         LinearLayout aRet = new LinearLayout(this.ct);
+        aRet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fp.setPath(fic.getAbsolutePath());
+            }
+        });
+        aRet.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                fe.setCopy(fic.getAbsolutePath());
+                return true;
+            }
+        });
 
         TextView tv = new TextView(this.ct);
         tv.setText(this.fic.getName());

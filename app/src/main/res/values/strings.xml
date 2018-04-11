@@ -9,4 +9,7 @@
     <string name="saveName">save</string>
     <string name="unSaved">Aucun chemin defini</string>
     <string name="pref_name">pref_name</string>
+    <string name="copy">Copié !</string>
+    <string name="pbpaste">Impossible de coller ici</string>
+    <string name="okpaste">Collé !</string>
 </resources>

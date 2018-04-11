@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ImageButton param = (ImageButton) findViewById(R.id.param);
+        param.requestFocus();
         param.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
